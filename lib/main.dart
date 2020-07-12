@@ -1,15 +1,24 @@
 import 'package:flutter/material.dart';
 import 'screens/task_screen.dart';
+import 'package:provider/provider.dart';
+import 'models/task_data.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(
+      MyApp()
+  );
 }
 
 class MyApp extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: TaskScreen(),
+    return ChangeNotifierProvider<DataNF>(
+      create: (context) => DataNF(),
+      child: MaterialApp(
+        home: TaskScreen(),
+      ),
     );
+
   }
 }

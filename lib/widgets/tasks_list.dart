@@ -1,20 +1,22 @@
 import 'package:flutter/material.dart';
 import 'task_tile.dart';
-
+import '../models/task.dart';
+import 'package:provider/provider.dart';
+import '../models/task_data.dart';
 class TaskList extends StatelessWidget {
-  const TaskList({
-    Key key,
-  }) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: [
-        TaskTile(),
-        TaskTile(),
-        TaskTile(),
-        TaskTile(),
-      ],
+
+    final List<Task> taskList = Provider.of<DataNF>(context).tasks;
+    return ListView.builder(
+      itemBuilder: (context, index) {
+        return TaskTile(
+          taskTitle: taskList[index].name,
+          isChecked: taskList[index].isDone,
+          index: index,
+        );
+      },
+      itemCount: taskList.length,
     );
   }
 }

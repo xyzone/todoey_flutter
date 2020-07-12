@@ -1,10 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:provider/provider.dart';
+import '../models/task_data.dart';
 import '../widgets/tasks_list.dart';
 import 'package:todoey_flutter/screens/add_task_screen.dart';
 
+
 class TaskScreen extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,14 +51,14 @@ class TaskScreen extends StatelessWidget {
                     height: 10.0,
                   ),
                   Text(
-                    'Todoey',
+                    Provider.of<DataNF>(context).data1,
                     style: TextStyle(
                         color: Colors.white,
                         fontSize: 50,
                         fontWeight: FontWeight.w700),
                   ),
                   Text(
-                    '12 Tasks',
+                    Provider.of<DataNF>(context).tasks.length.toString() + ' Tasks',
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 18,
@@ -74,7 +78,9 @@ class TaskScreen extends StatelessWidget {
                       topRight: Radius.circular(20),
                     ),
                   ),
-                  child: TaskList(),
+                  child: TaskList(
+//                      taskList: Provider.of<DataNF>(context).tasks,
+                    ),
                 ),
               ),
             )
